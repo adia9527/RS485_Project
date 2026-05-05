@@ -1,0 +1,37 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "OpenOCD Launch (STM32F429 + STLink)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build/Debug/myproject.elf",
+
+      "servertype": "openocd",
+      "serverpath": "/usr/bin/openocd",
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/stm32f4x.cfg"
+      ],
+
+      "interface": "swd",
+
+      "runToEntryPoint": "main",
+
+      "svdFile": "${workspaceFolder}/svd/STM32F429.svd",
+
+      "gdbPath": "/usr/bin/gdb-multiarch",
+
+      "showDevDebugOutput": "raw",
+
+      "preLaunchCommands": [
+        "monitor reset halt"
+      ],
+
+      "postLaunchCommands": [
+        "monitor reset init"
+      ]
+    }
+  ]
+}
